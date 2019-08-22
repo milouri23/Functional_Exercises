@@ -23,9 +23,9 @@ public class FuncionesCalculadora {
     public static final Function<List<Integer>,Mono<Integer> > restar =  lista ->
             Mono.just(
             lista.stream().
-            reduce(lista.get(0) * 2,
-                    (a, b) -> a - b)
-            );
+            reduce(0,
+                    (a, b) -> b - a)
+            ).flatMap(x -> Mono.just(x * (-1)));
 
     public static final Function<? super Integer, Mono<String>> getTablaMultiplicar = factor -> {
        StringBuilder tablaFinal = new StringBuilder(90);
